@@ -2,15 +2,21 @@
 {
     using System.Linq;
 
+    using Tetris.Engine.GameStates;
+    using Tetris.Engine.GameStates.Interfaces;
+
     public class BoardManager
     {
         private readonly bool[][] gameBoard;
         private readonly int rows;
         private readonly int columns;
 
+        public IGameState GameState { get; private set; }
+
         public BoardManager(bool[][] gameBoard)
         {
             this.gameBoard = gameBoard;
+            this.GameState = new Paused();
             this.rows = gameBoard.GetLength(0);
             this.columns = gameBoard[0].Length;
         }

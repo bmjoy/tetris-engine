@@ -40,6 +40,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BoardManager.cs" />
+    <Compile Include="GameStates\BaseState.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GameStates\GameOver.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GameStates\Interfaces\IBaseState.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GameStates\Paused.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GameStates\Playing.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
