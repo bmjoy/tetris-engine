@@ -7,7 +7,6 @@
 
     public class BoardManager
     {
-        
         private readonly int rows;
         private readonly int columns;
 

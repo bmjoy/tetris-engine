@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tetris.Engine.Test", "Tetri
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tetris.ApiClient", "Tetris.ApiClient\Tetris.ApiClient.csproj", "{1E72CD7E-7DE0-4C0F-AD7C-31C655B05BBA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tetris.Engine.AI", "Tetris.Engine.AI\Tetris.Engine.AI.csproj", "{AE86F9DB-10CF-4020-93FA-4D9521A94152}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1E72CD7E-7DE0-4C0F-AD7C-31C655B05BBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E72CD7E-7DE0-4C0F-AD7C-31C655B05BBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E72CD7E-7DE0-4C0F-AD7C-31C655B05BBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE86F9DB-10CF-4020-93FA-4D9521A94152}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE86F9DB-10CF-4020-93FA-4D9521A94152}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE86F9DB-10CF-4020-93FA-4D9521A94152}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE86F9DB-10CF-4020-93FA-4D9521A94152}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
