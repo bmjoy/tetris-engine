@@ -59,6 +59,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BoardManagerTests.cs" />
+    <Compile Include="StringExtensionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
