@@ -4,6 +4,8 @@ namespace Tetris.Engine.Test
     using System;
     using System.Text;
 
+    using Moq;
+
     using NUnit.Framework;
 
     [TestFixture]
@@ -24,6 +26,106 @@ namespace Tetris.Engine.Test
             var gameManager = new BoardManager(board);
             Console.WriteLine(gameManager.IsRowFull(row));
             Assert.That(gameManager.IsRowFull(row), Is.EqualTo(expectedResult));
+        }
+
+        [Test]
+        public void CanSpawnBlock_when_area_is_free()
+        {
+            var board = new[]
+            {
+                new[] { true, true, true, true, true, true },
+                new[] { true, false, false, false, false, true },
+                new[] { true, false, false, false, false, true },
+                new[] { true, false, false, false, false, true },
+                new[] { true, false, false, false, false, true }
+            };
+
+            var manager = new BoardManager(board);
+
+            Assert.IsTrue(manager.CanSpawnBlock());
+        }
+
+        [Test]
+        public void CanSpawnBlock_when_area_is_blocked_in_top_left()
+        {
+            var board = new[]
+            {
+                new[] { true, true, false, false, false, true },
+                new[] { true, false, false, false, false, true },
+                new[] { true, false, false, false, false, true },
+                new[] { true, false, false, false, false, true }
+            };
+
+            var gameManager = new BoardManager(board);
+            Assert.IsFalse(gameManager.CanSpawnBlock());
+        }
+
+        [Test]
+        public void CanSpawnBlock_when_area_is_blocked_in_mid_left()
+        {
+            var board = new[]
+            {
+                new[] { true, false, false, false, false, true },
+                new[] { true, true, false, false, false, true },
+                new[] { true, true, false, false, false, true },
+                new[] { true, false, false, false, false, true }
+            };
+
+            var gameManager = new BoardManager(board);
+            Assert.IsFalse(gameManager.CanSpawnBlock());
+        }
+
+        [Test]
+        public void CanSpawnBlock_when_area_is_blocked_in_low_left()
+        {
+            var board = new[]
+            {
+                new[] { true, false, false, false, false, true },
+                new[] { true, false, false, false, false, true },
+                new[] { true, false, false, false, false, true },
+                new[] { true, true, false, false, false, true }
+            };
+
+            var gameManager = new BoardManager(board);
+            Assert.IsFalse(gameManager.CanSpawnBlock());
+        }
+
+        [Test]
+        public void Spawn_returns_goes_to_gameover_if_new_block_cannot_be_spawned()
+        {
+            var board = new[]
+            {
+                new[] { true, false, false, false, false, true },
+                new[] { true, false, true, false, false, true },
+                new[] { true, false, false, false, false, true },
+                new[] { true, true, false, false, false, true }
+            };
+
+            var gameManager = new BoardManager(board);
+            gameManager.SpawnBlock();
+
+            Assert.IsTrue(gameManager.GameState.IsGameOver());
+        }
+
+        [Test]
+        public void Spawn_set_active_block()
+        {
+            var board = new[]
+            {
+                new[] { true, false, false, false, false, true },
+                new[] { true, false, false, false, false, true },
+                new[] { true, false, false, false, false, true },
+                new[] { true, false, false, false, false, true }
+            };
+
+            var gameManager = new BoardManager(board);
+
+            Assert.IsNull(gameManager.ActiveBlock);
+
+            gameManager.SpawnBlock();
+
+            Assert.IsFalse(gameManager.GameState.IsGameOver());
+            Assert.IsNotNull(gameManager.ActiveBlock);
         }
 
         [Test]

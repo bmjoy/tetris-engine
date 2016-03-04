@@ -20,7 +20,7 @@
         public Position Position { get; private set; }
         public bool Falling { get; private set; }
 
-        public bool Placed { get; set; }
+        public virtual bool Placed { get; set; }
 
         public void Move(Move move)
         {

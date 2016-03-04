@@ -7,16 +7,17 @@
 
     public class BoardManager
     {
-        private readonly bool[][] gameBoard;
+        
         private readonly int rows;
         private readonly int columns;
 
-        public IGameState GameState { get; private set; }
-        public Block ActiveBlock { get; private set; }
+        public virtual IGameState GameState { get; private set; }
+        public virtual Block ActiveBlock { get; private set; }
+        public virtual bool[][] GameBoard { get; private set; }
 
         public BoardManager(bool[][] gameBoard)
         {
-            this.gameBoard = gameBoard;
+            this.GameBoard = gameBoard;
             this.GameState = new Paused();
             this.rows = gameBoard.GetLength(0);
             this.columns = gameBoard[0].Length;
@@ -24,7 +25,7 @@
 
         public bool CanSpawnBlock()
         {
-            if (!this.ActiveBlock.Placed)
+            if (this.ActiveBlock != null)
             {
                 return false;
             }
@@ -32,7 +33,7 @@
 
             for (var row = this.rows - 1; row >= this.rows -4; row--)
             {
-                if (this.gameBoard[row].Skip(leftSpawnArea).Take(4).All(x => !x))
+                if (this.GameBoard[row].Skip(leftSpawnArea).Take(4).Any(x => x))
                 {
                     return false;
                 }
@@ -68,7 +69,7 @@
 
         public bool[][] GetBoard()
         {
-            return this.gameBoard;
+            return this.GameBoard;
         }
 
         public bool Move(Move move)
@@ -100,7 +101,7 @@
             {
                 for (var column = block.Position.Column; column < block.Position.Column + 4; column++)
                 {
-                    if (this.gameBoard[row][column] && block.BlockMatrix[row - block.Position.Row][column - block.Position.Column])
+                    if (this.GameBoard[row][column] && block.BlockMatrix[row - block.Position.Row][column - block.Position.Column])
                     {
                         return false;
                     }
@@ -112,7 +113,7 @@
 
         internal bool IsRowFull(int row)
         {
-            return this.gameBoard[row].All(x => x);
+            return this.GameBoard[row].All(x => x);
         }
 
         internal BoardManager CollapseRow(int rowToCollapse)
@@ -120,11 +121,11 @@
             // Move rows down in array, which deletes the current row
             for (var rowIndex = rowToCollapse; rowIndex < this.rows -1; rowIndex++)
             {
-                this.gameBoard[rowIndex] = this.gameBoard[rowIndex + 1];
+                this.GameBoard[rowIndex] = this.GameBoard[rowIndex + 1];
             }
 
             // Make sure top line is cleared
-            this.gameBoard[this.rows -1] = new bool[this.columns];
+            this.GameBoard[this.rows -1] = new bool[this.columns];
 
             return this;
         }
