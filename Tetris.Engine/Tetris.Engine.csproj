@@ -39,7 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlockTypeExtension.cs" />
+    <Compile Include="BlockType.cs" />
     <Compile Include="BoardManager.cs" />
+    <Compile Include="Block.cs" />
     <Compile Include="GameStates\BaseState.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -55,7 +58,16 @@
     <Compile Include="GameStates\Playing.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Move.cs" />
+    <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringExtension.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tetris.ApiClient\Tetris.ApiClient.csproj">
+      <Project>{1e72cd7e-7de0-4c0f-ad7c-31c655b05bba}</Project>
+      <Name>Tetris.ApiClient</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

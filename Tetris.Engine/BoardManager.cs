@@ -12,6 +12,7 @@
         private readonly int columns;
 
         public IGameState GameState { get; private set; }
+        public Block ActiveBlock { get; private set; }
 
         public BoardManager(bool[][] gameBoard)
         {
@@ -19,6 +20,37 @@
             this.GameState = new Paused();
             this.rows = gameBoard.GetLength(0);
             this.columns = gameBoard[0].Length;
+        }
+
+        public bool CanSpawnBlock()
+        {
+            if (!this.ActiveBlock.Placed)
+            {
+                return false;
+            }
+            var leftSpawnArea = (this.columns - 4) / 2;
+
+            for (var row = this.rows - 1; row >= this.rows -4; row--)
+            {
+                if (this.gameBoard[row].Skip(leftSpawnArea).Take(4).All(x => !x))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public Block SpawnBlock()
+        {
+            if (!this.CanSpawnBlock())
+            {
+                this.GameState = new GameOver();
+            }
+
+            this.ActiveBlock = new Block();
+
+            return this.ActiveBlock;
         }
 
         public BoardManager CheckBoard()
@@ -39,8 +71,42 @@
             return this.gameBoard;
         }
 
-        public bool IsValidMove()
+        public bool Move(Move move)
         {
+            var tempMove = this.ActiveBlock.Clone();
+            tempMove.Move(move);
+
+            if (!this.CheckBlock(tempMove))
+            {
+                return false;
+            }
+
+            this.ActiveBlock = tempMove;
+
+            return true;
+        }
+
+        public bool IsValidMove(Move move)
+        {
+            var tempMove = this.ActiveBlock.Clone();
+            tempMove.Move(move);
+
+            return !this.CheckBlock(tempMove);
+        }
+
+        internal bool CheckBlock(Block block)
+        {
+            for (var row = block.Position.Row; row < block.Position.Row + 4; row++)
+            {
+                for (var column = block.Position.Column; column < block.Position.Column + 4; column++)
+                {
+                    if (this.gameBoard[row][column] && block.BlockMatrix[row - block.Position.Row][column - block.Position.Column])
+                    {
+                        return false;
+                    }
+                }
+            }
+
             return true;
         }
 
