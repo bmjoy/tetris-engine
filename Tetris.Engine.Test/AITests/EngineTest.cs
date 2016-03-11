@@ -76,6 +76,14 @@
                     0000000000000000
                     0000000000000000
                     1111111111111100", BlockType.O, 1)]
+        [TestCase(@"0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0101010101010110
+                    0101010101010110
+                    0101010101010110
+                    1111111111111100", BlockType.O, 9)]
         public void GetNextMoveTest(string input, BlockType newBlockType, int expeceted)
         {
             var boolMatrix = this.ReverseRows(input.StringToBoolMatrix(8));

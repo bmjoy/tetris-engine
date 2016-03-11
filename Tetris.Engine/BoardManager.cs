@@ -155,6 +155,7 @@
         internal void Lockblock()
         {
             var block = this.ActiveBlock;
+            this.ActiveBlock = null;
 
             for (var row = block.Position.Row; row < block.Position.Row + 4 && row < this.rows; row++)
             {

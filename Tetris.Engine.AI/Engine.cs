@@ -28,7 +28,7 @@
                 return new Move();
             }
 
-            var moves = GetMoves(manager);
+            var moves = this.GetMoves(manager);
 
             foreach (var move in moves)
             {
@@ -49,8 +49,7 @@
                 {
                     var tempManager = new BoardManager(manager.GameBoard.DeepClone(), manager.GameState, manager.ActiveBlock);
                     var tempBlock = tempManager.ActiveBlock.Clone();
-                    Console.WriteLine("before block " + column + " rotation " + rotation);
-                    Console.WriteLine(tempManager.GameBoard.MatrixToString());
+
                     for (var i = 1; i <= rotation; i++)
                     {
                         tempBlock.Move(Tetris.Engine.Move.Rotate);
@@ -75,9 +74,18 @@
 
                         tempManager.Lockblock();
                         tempManager.CheckBoard();
+                        var canSpawnBlock = tempManager.CanSpawnBlock();
                         Console.WriteLine("after block " + column + " rotation " + rotation);
                         Console.WriteLine(tempManager.GameBoard.MatrixToString());
-                        moves.Add(new Move { Column = column, Rows = rows, Fitness = this.algorithm.CalculateFitness(tempManager.GameBoard), IsValid = true, Rotation = rotation });
+                        moves.Add(
+                            new Move
+                                {
+                                    Column = column,
+                                    Rows = rows,
+                                    Fitness = canSpawnBlock ? this.algorithm.CalculateFitness(tempManager.GameBoard) : int.MaxValue,
+                                    IsValid = true,
+                                    Rotation = rotation
+                                });
                     }
                 }
             }
