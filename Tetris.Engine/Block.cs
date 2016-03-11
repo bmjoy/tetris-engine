@@ -8,12 +8,22 @@
         private BlockType blockType;
         private int rotationIndex;
 
-        public Block()
+        public Block(Position position)
         {
             this.rotationIndex = 0;
             this.Falling = false;
-            this.Position = new Position();
+            this.Position = position;
             this.blockType = this.GetRandomBlockType();
+            this.BlockMatrix = this.blockType.GetRotations(this.rotationIndex);
+        }
+
+        public Block(BlockType type, Position position)
+        {
+            this.rotationIndex = 0;
+            this.Falling = false;
+            this.Position = position;
+            this.blockType = type;
+            this.BlockMatrix = this.blockType.GetRotations(this.rotationIndex);
         }
 
         public bool[][] BlockMatrix { get; private set; }
@@ -41,11 +51,18 @@
                         this.Falling = true;
                         break;
                     }
+                case Engine.Move.Down:
+                    {
+                        this.Position.Row--;
+                        break;
+                    }
                 case Engine.Move.Rotate:
                     {
                         this.BlockMatrix = this.blockType.GetRotations(this.rotationIndex++);
                         break;
                     }
+
+                default: throw new NotImplementedException(move.ToString("G"));
             }
         }
 
@@ -58,12 +75,10 @@
 
         internal Block Clone()
         {
-            return new Block
+            return new Block(this.blockType, this.Position)
                 {
                     BlockMatrix = this.BlockMatrix,
                     Falling = true,
-                    Position = this.Position,
-                    blockType = this.blockType
                 };
         }
 
@@ -71,7 +86,7 @@
         {
             this.BlockMatrix = block.BlockMatrix;
             this.Falling = block.Falling;
-            this.Position = block.Position;
+            this.Position = new Position { Column = block.Position.Column, Row = block.Position.Row };
             this.blockType = block.blockType;
         }
     }

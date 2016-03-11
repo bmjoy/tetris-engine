@@ -2,6 +2,8 @@
 {
     using NUnit.Framework;
 
+    using Tetris.Engine.Extensions;
+
     [TestFixture]
     public class StringExtensionTest
     {
@@ -16,12 +18,12 @@
 01010101010")]
         public void StringToBoolMatrixTests(string input)
         {
-            var result = input.StringToBoolMatrix();
+            var result = input.StringTo4By4BoolMatrix();
 
             Assert.AreEqual(Expected.Length, result.Length, "row length");
             Assert.AreEqual(Expected[0].Length, result[0].Length, "column length");
 
-            for (var rowIndex = 0; rowIndex < input.StringToBoolMatrix().Length; rowIndex++)
+            for (var rowIndex = 0; rowIndex < input.StringTo4By4BoolMatrix().Length; rowIndex++)
             {
                 for (var columnIndex = 0; columnIndex < Expected[0].Length; columnIndex++)
                 {

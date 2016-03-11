@@ -3,5 +3,7 @@
     public interface IGameState
     {
         bool IsGameOver();
+
+        bool IsPaused();
     }
 }

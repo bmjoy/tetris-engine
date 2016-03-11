@@ -14,11 +14,28 @@
         public virtual Block ActiveBlock { get; private set; }
         public virtual bool[][] GameBoard { get; private set; }
 
+        public virtual int NumberOfColumns
+        {
+            get
+            {
+                return this.columns;
+            }
+        }
+
         public BoardManager(bool[][] gameBoard)
         {
             this.GameBoard = gameBoard;
             this.GameState = new Paused();
             this.rows = gameBoard.GetLength(0);
+            this.columns = gameBoard[0].Length;
+        }
+
+        public BoardManager(bool[][] gameBoard, IGameState state, Block activeBlock)
+        {
+            this.GameBoard = gameBoard;
+            this.GameState = state;
+            this.rows = gameBoard.GetLength(0);
+            this.ActiveBlock = activeBlock;
             this.columns = gameBoard[0].Length;
         }
 
@@ -48,7 +65,7 @@
                 this.GameState = new GameOver();
             }
 
-            this.ActiveBlock = new Block();
+            this.ActiveBlock = new Block(new Position { Column = this.columns / 2, Row = this.rows });
 
             return this.ActiveBlock;
         }
@@ -100,7 +117,32 @@
             {
                 for (var column = block.Position.Column; column < block.Position.Column + 4; column++)
                 {
-                    if (this.GameBoard[row][column] && block.BlockMatrix[row - block.Position.Row][column - block.Position.Column])
+                    if (!block.BlockMatrix[row - block.Position.Row][column - block.Position.Column])
+                    {
+                        continue;
+                    }
+
+                    if (row < 0)
+                    {
+                        return false;
+                    }
+
+                    if (row >= this.rows)
+                    {
+                        return false;
+                    }
+
+                    if (column < 0)
+                    {
+                        return false;
+                    }
+
+                    if (column >= this.columns)
+                    {
+                        return false;
+                    }
+
+                    if (this.GameBoard[row][column])
                     {
                         return false;
                     }
@@ -108,6 +150,44 @@
             }
 
             return true;
+        }
+
+        internal void Lockblock()
+        {
+            var block = this.ActiveBlock;
+
+            for (var row = block.Position.Row; row < block.Position.Row + 4 && row < this.rows; row++)
+            {
+                for (var column = block.Position.Column; column < block.Position.Column + 4 && column < this.columns; column++)
+                {
+                    if (row < 0)
+                    {
+                        continue;
+                    }
+
+                    if (row >= this.rows)
+                    {
+                        continue;
+                    }
+
+                    if (column < 0)
+                    {
+                        continue;
+                    }
+
+                    if (column >= this.columns)
+                    {
+                        continue;
+                    }
+
+                    if (this.GameBoard[row][column])
+                    {
+                        continue;
+                    }
+
+                    this.GameBoard[row][column] = this.GameBoard[row][column] | block.BlockMatrix[row - block.Position.Row][column - block.Position.Column];
+                }
+            }
         }
 
         internal bool IsRowFull(int row)

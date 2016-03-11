@@ -1,5 +1,7 @@
 ﻿namespace Tetris.Engine
 {
+    using Tetris.Engine.Extensions;
+
     public static class BlockTypeExtension
     {
         private static readonly string[] L = {
@@ -135,13 +137,13 @@
 
             switch (type)
             {
-                case BlockType.I: return I[rotationIndex].StringToBoolMatrix();
-                case BlockType.J: return J[rotationIndex].StringToBoolMatrix();
-                case BlockType.Z: return Z[rotationIndex].StringToBoolMatrix();
-                case BlockType.O: return O[rotationIndex].StringToBoolMatrix();
-                case BlockType.S: return S[rotationIndex].StringToBoolMatrix();
-                case BlockType.L: return L[rotationIndex].StringToBoolMatrix();
-                case BlockType.T: return T[rotationIndex].StringToBoolMatrix();
+                case BlockType.I: return I[rotationIndex].StringTo4By4BoolMatrix();
+                case BlockType.J: return J[rotationIndex].StringTo4By4BoolMatrix();
+                case BlockType.Z: return Z[rotationIndex].StringTo4By4BoolMatrix();
+                case BlockType.O: return O[rotationIndex].StringTo4By4BoolMatrix();
+                case BlockType.S: return S[rotationIndex].StringTo4By4BoolMatrix();
+                case BlockType.L: return L[rotationIndex].StringTo4By4BoolMatrix();
+                case BlockType.T: return T[rotationIndex].StringTo4By4BoolMatrix();
             }
 
             return null;

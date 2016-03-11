@@ -2,14 +2,11 @@
 namespace Tetris.Engine.Test
 {
     using System;
-    using System.Text;
-
-    using Moq;
 
     using NUnit.Framework;
 
     [TestFixture]
-    public class BoardManagerTests
+    public class BoardManagerTests : TestBase
     {
         [Test]
         [TestCase(0, false)]
@@ -318,57 +315,6 @@ namespace Tetris.Engine.Test
             board = gameManager.CheckBoard().GetBoard();
 
             this.AssertBoard(board, exspected);
-        }
-
-        private void AssertBoard(bool[][] board, bool[][] exspected)
-        {
-            this.PrintBoardDifferences(board, exspected);
-
-            Assert.AreEqual(board.GetLength(0), exspected.GetLength(0), "rows");
-            Assert.AreEqual(board[0].Length, exspected[0].Length, "columns");
-
-            for (int row = 0; row < board.GetLength(0); row++)
-            {
-                for (int column = 0; column < board[0].Length; column++)
-                {
-                    Assert.That(board[row][column], Is.EqualTo(exspected[row][column]));
-                }
-            }
-        }
-
-        protected bool[][] ReverseRows(bool[][] gameBoard)
-        {
-            var a = (bool[][])gameBoard.Clone();
-            for (var i = 0; i < gameBoard.GetLength(0); i++)
-            {
-                a[gameBoard.GetLength(0) - i - 1] = gameBoard[i];
-            }
-            return a;
-        }
-
-        protected void PrintBoardDifferences(bool[][] gameBoard, bool[][] expectedBoard)
-        {
-            PrintField(this.ReverseRows(gameBoard));
-
-            Console.WriteLine();
-
-            PrintField(this.ReverseRows(expectedBoard));
-        }
-
-        private static void PrintField(bool[][] gameBoard)
-        {
-            var fieldChars = new StringBuilder();
-            for (int row = 0; row < gameBoard.GetLength(0); row++)
-            {
-                for (var column = 0; column < gameBoard[row].Length; column++)
-                {
-                    fieldChars.Append(gameBoard[row][column] ? "1" : "0");
-                }
-
-                fieldChars.AppendLine();
-            }
-
-            Console.WriteLine(fieldChars);
         }
     }
 }

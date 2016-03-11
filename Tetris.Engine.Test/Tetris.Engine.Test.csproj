@@ -58,7 +58,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AITests\AlgorithmTests\TsitsiklisTests.cs" />
+    <Compile Include="AITests\EngineTest.cs" />
     <Compile Include="BoardManagerTests.cs" />
+    <Compile Include="TestBase.cs" />
     <Compile Include="StringExtensionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -66,6 +69,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Tetris.Engine.AI\Tetris.Engine.AI.csproj">
+      <Project>{AE86F9DB-10CF-4020-93FA-4D9521A94152}</Project>
+      <Name>Tetris.Engine.AI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tetris.Engine\Tetris.Engine.csproj">
       <Project>{d32f5ea5-17a2-400a-82d4-93c5ef1e30b8}</Project>
       <Name>Tetris.Engine</Name>

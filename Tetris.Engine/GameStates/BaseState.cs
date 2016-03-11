@@ -8,5 +8,10 @@
         {
             return false;
         }
+
+        public bool IsPaused()
+        {
+            return false;
+        }
     }
 }

@@ -43,6 +43,7 @@
     <Compile Include="BlockType.cs" />
     <Compile Include="BoardManager.cs" />
     <Compile Include="Block.cs" />
+    <Compile Include="Extensions\ArrayExtension.cs" />
     <Compile Include="GameStates\BaseState.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -61,7 +62,7 @@
     <Compile Include="Move.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StringExtension.cs" />
+    <Compile Include="Extensions\StringExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tetris.ApiClient\Tetris.ApiClient.csproj">
