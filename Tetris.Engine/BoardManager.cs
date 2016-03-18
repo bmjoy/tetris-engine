@@ -113,9 +113,9 @@
 
         internal bool CheckBlock(Block block)
         {
-            for (var row = block.Position.Row; row < block.Position.Row + 4; row++)
+            for (var row = block.Position.Row; row < block.Position.Row + block.BlockMatrixSize; row++)
             {
-                for (var column = block.Position.Column; column < block.Position.Column + 4; column++)
+                for (var column = block.Position.Column; column < block.Position.Column + block.BlockMatrixSize; column++)
                 {
                     if (!block.BlockMatrix[row - block.Position.Row][column - block.Position.Column])
                     {
@@ -157,9 +157,9 @@
             var block = this.ActiveBlock;
             this.ActiveBlock = null;
 
-            for (var row = block.Position.Row; row < block.Position.Row + 4 && row < this.rows; row++)
+            for (var row = block.Position.Row; row < block.Position.Row + block.BlockMatrixSize && row < this.rows; row++)
             {
-                for (var column = block.Position.Column; column < block.Position.Column + 4 && column < this.columns; column++)
+                for (var column = block.Position.Column; column < block.Position.Column + block.BlockMatrixSize && column < this.columns; column++)
                 {
                     if (row < 0)
                     {
