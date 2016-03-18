@@ -45,7 +45,7 @@
                     0000", 8)]
         public void CalculateFitnessTest(string input, int expeceted)
         {
-            var boolMatrix = this.ReverseRows(input.StringTo4By4BoolMatrix());
+            var boolMatrix = this.ReverseRows(input.StringToBoolMatrix(4));
             var weights = new TsitsiklisWeights(1, 3);
             var algorithm = new Tsitsiklis(weights);
 
