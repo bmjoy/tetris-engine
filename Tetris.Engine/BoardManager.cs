@@ -47,9 +47,9 @@
             }
             var leftSpawnArea = (this.columns - 4) / 2;
 
-            for (var row = this.rows - 1; row >= this.rows -4; row--)
+            for (var row = this.rows - 1; row >= this.rows -2; row--)
             {
-                if (this.GameBoard[row].Skip(leftSpawnArea).Take(4).Any(x => x))
+                if (this.GameBoard[row].Skip(leftSpawnArea).Take(2).Any(x => x))
                 {
                     return false;
                 }

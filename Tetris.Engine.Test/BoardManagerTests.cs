@@ -49,8 +49,7 @@ namespace Tetris.Engine.Test
             {
                 new[] { true, true, false, false, false, true },
                 new[] { true, false, false, false, false, true },
-                new[] { true, false, false, false, false, true },
-                new[] { true, false, false, false, false, true }
+                new[] { true, true, true, true, true, true }
             };
 
             var gameManager = new BoardManager(board);
@@ -63,9 +62,8 @@ namespace Tetris.Engine.Test
             var board = new[]
             {
                 new[] { true, false, false, false, false, true },
-                new[] { true, true, false, false, false, true },
-                new[] { true, true, false, false, false, true },
-                new[] { true, false, false, false, false, true }
+                new[] { true, false, true, false, false, true },
+                new[] { true, true, true, true, true, true }
             };
 
             var gameManager = new BoardManager(board);
@@ -78,9 +76,8 @@ namespace Tetris.Engine.Test
             var board = new[]
             {
                 new[] { true, false, false, false, false, true },
-                new[] { true, false, false, false, false, true },
-                new[] { true, false, false, false, false, true },
-                new[] { true, true, false, false, false, true }
+                new[] { true, true, false, false, false, true },
+                new[] { true, true, true, true, true, true }
             };
 
             var gameManager = new BoardManager(board);
