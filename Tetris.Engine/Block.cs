@@ -59,9 +59,14 @@
                         this.Position.Row--;
                         break;
                     }
-                case Engine.Move.Rotate:
+                case Engine.Move.RotateRight:
                     {
                         this.BlockMatrix = this.blockType.GetRotations(this.rotationIndex++);
+                        break;
+                    }
+                case Engine.Move.RotateLeft:
+                    {
+                        this.BlockMatrix = this.blockType.GetRotations(this.rotationIndex--);
                         break;
                     }
 

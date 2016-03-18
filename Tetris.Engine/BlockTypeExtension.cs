@@ -86,12 +86,12 @@ namespace Tetris.Engine
             switch (type)
             {
                 case BlockType.O: return O[0].StringToBoolMatrix(4);
-                case BlockType.I: return I[rotationIndex % 2].StringToBoolMatrix(4);
-                case BlockType.J: return J[rotationIndex % 4].StringToBoolMatrix(3);
-                case BlockType.Z: return Z[rotationIndex % 2].StringToBoolMatrix(3);
-                case BlockType.S: return S[rotationIndex % 2].StringToBoolMatrix(3);
-                case BlockType.L: return L[rotationIndex % 4].StringToBoolMatrix(3);
-                case BlockType.T: return T[rotationIndex % 4].StringToBoolMatrix(3);
+                case BlockType.I: return I[Math.Abs(rotationIndex) % 2].StringToBoolMatrix(4);
+                case BlockType.J: return J[Math.Abs(rotationIndex) % 4].StringToBoolMatrix(3);
+                case BlockType.Z: return Z[Math.Abs(rotationIndex) % 2].StringToBoolMatrix(3);
+                case BlockType.S: return S[Math.Abs(rotationIndex) % 2].StringToBoolMatrix(3);
+                case BlockType.L: return L[Math.Abs(rotationIndex) % 4].StringToBoolMatrix(3);
+                case BlockType.T: return T[Math.Abs(rotationIndex) % 4].StringToBoolMatrix(3);
             }
 
             throw new ArgumentOutOfRangeException(nameof(type));

@@ -15,7 +15,7 @@ namespace Tetris.Engine.AI
                     var a = new List<Tetris.Engine.Move>();
                     for (var i = 0; i < this.Rotation; i++)
                     {
-                        a.Add(Tetris.Engine.Move.Rotate);
+                        a.Add(Tetris.Engine.Move.RotateRight);
                     }
 
                     if (this.Column < 0)

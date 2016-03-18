@@ -6,7 +6,8 @@
         Down,
         Left,
         Fall,
-        Rotate,
+        RotateRight,
+        RotateLeft,
         Right
     }
 }

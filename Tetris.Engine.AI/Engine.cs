@@ -52,7 +52,7 @@
 
                     for (var i = 1; i <= rotation; i++)
                     {
-                        tempBlock.Move(Tetris.Engine.Move.Rotate);
+                        tempBlock.Move(Tetris.Engine.Move.RotateRight);
                     }
 
                     tempBlock.Position.Column = column;
