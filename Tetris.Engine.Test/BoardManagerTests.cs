@@ -1,4 +1,7 @@
 ﻿// ReSharper disable InconsistentNaming
+
+using Tetris.Engine.Extensions;
+
 namespace Tetris.Engine.Test
 {
     using System;
@@ -309,6 +312,174 @@ namespace Tetris.Engine.Test
             });
 
             var gameManager = new BoardManager(board);
+            board = gameManager.CheckBoard().GetBoard();
+
+            this.AssertBoard(board, exspected);
+        }
+
+        [Test]
+        public void SpawnBlock_i_block_is_placed_correctly()
+        {
+            var board = 
+                @"0000000000
+                  0000000000
+                  0000000000
+                  0000000000
+                  0000000000".StringToBoolMatrix(5);
+            var exspected =
+                @"0001111000
+                  0000000000
+                  0000000000
+                  0000000000
+                  0000000000".StringToBoolMatrix(5);
+
+            var gameManager = new BoardManager(board);
+            gameManager.SpawnBlock(BlockType.I);
+            gameManager.Lockblock();
+            board = gameManager.CheckBoard().GetBoard();
+
+            this.AssertBoard(board, exspected);
+        }
+
+        [Test]
+        public void SpawnBlock_o_block_is_placed_correctly()
+        {
+            var board =
+                @"0000000000
+                  0000000000
+                  0000000000
+                  0000000000
+                  0000000000".StringToBoolMatrix(5);
+            var exspected =
+                @"0000110000
+                  0000110000
+                  0000000000
+                  0000000000
+                  0000000000".StringToBoolMatrix(5);
+
+            var gameManager = new BoardManager(board);
+            gameManager.SpawnBlock(BlockType.O);
+            gameManager.Lockblock();
+            board = gameManager.CheckBoard().GetBoard();
+
+            this.AssertBoard(board, exspected);
+        }
+
+        [Test]
+        public void SpawnBlock_t_block_is_placed_correctly()
+        {
+            var board =
+                @"0000000000
+                  0000000000
+                  0000000000
+                  0000000000
+                  0000000000".StringToBoolMatrix(5);
+            var exspected =
+                @"0001110000
+                  0000100000
+                  0000000000
+                  0000000000
+                  0000000000".StringToBoolMatrix(5);
+
+            var gameManager = new BoardManager(board);
+            gameManager.SpawnBlock(BlockType.T);
+            gameManager.Lockblock();
+            board = gameManager.CheckBoard().GetBoard();
+
+            this.AssertBoard(board, exspected);
+        }
+
+        [Test]
+        public void SpawnBlock_j_block_is_placed_correctly()
+        {
+            var board =
+                @"0000000000
+                  0000000000
+                  0000000000
+                  0000000000
+                  0000000000".StringToBoolMatrix(5);
+            var exspected =
+                @"0001110000
+                  0000010000
+                  0000000000
+                  0000000000
+                  0000000000".StringToBoolMatrix(5);
+
+            var gameManager = new BoardManager(board);
+            gameManager.SpawnBlock(BlockType.J);
+            gameManager.Lockblock();
+            board = gameManager.CheckBoard().GetBoard();
+
+            this.AssertBoard(board, exspected);
+        }
+
+        [Test]
+        public void SpawnBlock_l_block_is_placed_correctly()
+        {
+            var board =
+                @"0000000000
+                  0000000000
+                  0000000000
+                  0000000000
+                  0000000000".StringToBoolMatrix(5);
+            var exspected =
+                @"0001110000
+                  0001000000
+                  0000000000
+                  0000000000
+                  0000000000".StringToBoolMatrix(5);
+
+            var gameManager = new BoardManager(board);
+            gameManager.SpawnBlock(BlockType.L);
+            gameManager.Lockblock();
+            board = gameManager.CheckBoard().GetBoard();
+
+            this.AssertBoard(board, exspected);
+        }
+
+        [Test]
+        public void SpawnBlock_s_block_is_placed_correctly()
+        {
+            var board =
+                @"0000000000
+                  0000000000
+                  0000000000
+                  0000000000
+                  0000000000".StringToBoolMatrix(5);
+            var exspected =
+                @"0000110000
+                  0001100000
+                  0000000000
+                  0000000000
+                  0000000000".StringToBoolMatrix(5);
+
+            var gameManager = new BoardManager(board);
+            gameManager.SpawnBlock(BlockType.S);
+            gameManager.Lockblock();
+            board = gameManager.CheckBoard().GetBoard();
+
+            this.AssertBoard(board, exspected);
+        }
+
+        [Test]
+        public void SpawnBlock_z_block_is_placed_correctly()
+        {
+            var board =
+                @"0000000000
+                  0000000000
+                  0000000000
+                  0000000000
+                  0000000000".StringToBoolMatrix(5);
+            var exspected =
+                @"0001100000
+                  0000110000
+                  0000000000
+                  0000000000
+                  0000000000".StringToBoolMatrix(5);
+
+            var gameManager = new BoardManager(board);
+            gameManager.SpawnBlock(BlockType.Z);
+            gameManager.Lockblock();
             board = gameManager.CheckBoard().GetBoard();
 
             this.AssertBoard(board, exspected);
