@@ -127,5 +127,21 @@ namespace Tetris.Engine
 
             throw new ArgumentOutOfRangeException(nameof(type));
         }
+
+        public static int BlockRotations(this BlockType type)
+        {
+            switch (type)
+            {
+                case BlockType.O: return RotationsO;
+                case BlockType.I: return RotationsI;
+                case BlockType.J: return RotationsJ;
+                case BlockType.Z: return RotationsZ;
+                case BlockType.S: return RotationsS;
+                case BlockType.L: return RotationsL;
+                case BlockType.T: return RotationsT;
+            }
+
+            throw new ArgumentOutOfRangeException(nameof(type));
+        }
     }
 }

@@ -36,7 +36,7 @@
         public IOrderedEnumerable<Move> GetMoves(BoardManager manager)
         {
             var moves = new List<Move>();
-            for (var rotation = 0; rotation < 5; rotation++)
+            for (var rotation = 0; rotation < manager.ActiveBlock.BlockRotations; rotation++)
             {
                 var rows = 0;
                 for (var column = -1; column < manager.NumberOfColumns; column++)
@@ -44,9 +44,12 @@
                     var tempManager = new BoardManager(manager.GameBoard.DeepClone(), manager.GameState, manager.ActiveBlock);
                     var tempBlock = tempManager.ActiveBlock.Clone();
 
-                    for (var i = 1; i <= rotation; i++)
+                    if (rotation != 0)
                     {
-                        tempBlock.Move(Tetris.Engine.Move.RotateRight);
+                        for (var i = 0; i <= rotation; i++)
+                        {
+                            tempBlock.Move(Tetris.Engine.Move.RotateRight);
+                        }
                     }
 
                     tempBlock.Position.Column = column;

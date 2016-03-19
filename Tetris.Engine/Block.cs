@@ -8,14 +8,8 @@
         private BlockType blockType;
         private int rotationIndex;
 
-        public Block(Position position)
+        public Block(Position position) : this(GetRandomBlockType(), position)
         {
-            this.rotationIndex = 0;
-            this.Falling = false;
-            this.Position = position;
-            this.blockType = GetRandomBlockType();
-            this.BlockMatrix = this.blockType.Rotation(this.rotationIndex);
-            this.BlockMatrixSize = BlockMatrix.GetLength(0);
         }
 
         public Block(BlockType type, Position position)
@@ -25,7 +19,8 @@
             this.Position = position;
             this.blockType = type;
             this.BlockMatrix = this.blockType.Rotation(this.rotationIndex);
-            this.BlockMatrixSize = BlockMatrix.GetLength(0);
+            this.BlockMatrixSize = this.blockType.BlockDimension();
+            this.BlockRotations = this.blockType.BlockRotations();
         }
 
         public bool[][] BlockMatrix { get; private set; }
@@ -34,6 +29,7 @@
 
         public virtual bool Placed { get; set; }
         public int BlockMatrixSize { get; private set; }
+        public int BlockRotations { get; private set; }
 
         public void Move(Move move)
         {
@@ -87,6 +83,7 @@
         {
             this.BlockMatrix = block.BlockMatrix;
             this.BlockMatrixSize = block.BlockMatrixSize;
+            this.BlockRotations = block.BlockRotations;
             this.Falling = block.Falling;
             this.Position = new Position { Column = block.Position.Column, Row = block.Position.Row };
             this.blockType = block.blockType;
