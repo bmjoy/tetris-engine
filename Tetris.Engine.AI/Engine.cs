@@ -30,12 +30,6 @@
 
             var moves = this.GetMoves(manager);
 
-            foreach (var move in moves)
-            {
-                
-                Console.WriteLine(string.Format("move fitness {0} isvalid {1}", move.Fitness, move.IsValid));
-            }
-
             return moves.FirstOrDefault();
         }
 
@@ -75,8 +69,6 @@
                         tempManager.Lockblock();
                         tempManager.CheckBoard();
                         var canSpawnBlock = tempManager.CanSpawnBlock();
-                        Console.WriteLine("after block " + column + " rotation " + rotation);
-                        Console.WriteLine(tempManager.GameBoard.MatrixToString());
                         moves.Add(
                             new Move
                                 {

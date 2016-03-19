@@ -60,12 +60,17 @@
 
         public Block SpawnBlock()
         {
+            return this.SpawnBlock(Block.GetRandomBlockType());
+        }
+
+        public Block SpawnBlock(BlockType type)
+        {
             if (!this.CanSpawnBlock())
             {
                 this.GameState = new GameOver();
             }
 
-            this.ActiveBlock = new Block(new Position { Column = this.columns / 2, Row = this.rows });
+            this.ActiveBlock = new Block(type , new Position { Column = (this.columns - type.BlockDimension()) / 2, Row = this.rows - type.BlockDimension() + 1 });
 
             return this.ActiveBlock;
         }

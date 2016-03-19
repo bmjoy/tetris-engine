@@ -6,6 +6,22 @@ namespace Tetris.Engine
 
     public static class BlockTypeExtension
     {
+        private const int RotationsO = 1;
+        private const int RotationsI = 2;
+        private const int RotationsJ = 4;
+        private const int RotationsZ = 2;
+        private const int RotationsS = 2;
+        private const int RotationsL = 4;
+        private const int RotationsT = 4;
+
+        private const int MatrixLengthO = 4;
+        private const int MatrixLengthI = 4;
+        private const int MatrixLengthJ = 3;
+        private const int MatrixLengthZ = 3;
+        private const int MatrixLengthS = 3;
+        private const int MatrixLengthL = 3;
+        private const int MatrixLengthT = 3;
+
         private static readonly string[] I = {
             @"0000
               1111
@@ -80,18 +96,33 @@ namespace Tetris.Engine
               011
               010" };
 
-
-        public static bool[][] GetRotations(this BlockType type, int rotationIndex)
+        public static bool[][] Rotation(this BlockType type, int rotationIndex)
         {
             switch (type)
             {
-                case BlockType.O: return O[0].StringToBoolMatrix(4);
-                case BlockType.I: return I[Math.Abs(rotationIndex) % 2].StringToBoolMatrix(4);
-                case BlockType.J: return J[Math.Abs(rotationIndex) % 4].StringToBoolMatrix(3);
-                case BlockType.Z: return Z[Math.Abs(rotationIndex) % 2].StringToBoolMatrix(3);
-                case BlockType.S: return S[Math.Abs(rotationIndex) % 2].StringToBoolMatrix(3);
-                case BlockType.L: return L[Math.Abs(rotationIndex) % 4].StringToBoolMatrix(3);
-                case BlockType.T: return T[Math.Abs(rotationIndex) % 4].StringToBoolMatrix(3);
+                case BlockType.O: return O[0].StringToBoolMatrix(MatrixLengthO);
+                case BlockType.I: return I[Math.Abs(rotationIndex) % RotationsI].StringToBoolMatrix(MatrixLengthI);
+                case BlockType.J: return J[Math.Abs(rotationIndex) % RotationsJ].StringToBoolMatrix(MatrixLengthJ);
+                case BlockType.Z: return Z[Math.Abs(rotationIndex) % RotationsZ].StringToBoolMatrix(MatrixLengthZ);
+                case BlockType.S: return S[Math.Abs(rotationIndex) % RotationsS].StringToBoolMatrix(MatrixLengthS);
+                case BlockType.L: return L[Math.Abs(rotationIndex) % RotationsL].StringToBoolMatrix(MatrixLengthL);
+                case BlockType.T: return T[Math.Abs(rotationIndex) % RotationsT].StringToBoolMatrix(MatrixLengthT);
+            }
+
+            throw new ArgumentOutOfRangeException(nameof(type));
+        }
+
+        public static int BlockDimension(this BlockType type)
+        {
+            switch (type)
+            {
+                case BlockType.O: return MatrixLengthO;
+                case BlockType.I: return MatrixLengthI;
+                case BlockType.J: return MatrixLengthJ;
+                case BlockType.Z: return MatrixLengthZ;
+                case BlockType.S: return MatrixLengthS;
+                case BlockType.L: return MatrixLengthL;
+                case BlockType.T: return MatrixLengthT;
             }
 
             throw new ArgumentOutOfRangeException(nameof(type));

@@ -13,8 +13,8 @@
             this.rotationIndex = 0;
             this.Falling = false;
             this.Position = position;
-            this.blockType = this.GetRandomBlockType();
-            this.BlockMatrix = this.blockType.GetRotations(this.rotationIndex);
+            this.blockType = GetRandomBlockType();
+            this.BlockMatrix = this.blockType.Rotation(this.rotationIndex);
             this.BlockMatrixSize = BlockMatrix.GetLength(0);
         }
 
@@ -24,7 +24,7 @@
             this.Falling = false;
             this.Position = position;
             this.blockType = type;
-            this.BlockMatrix = this.blockType.GetRotations(this.rotationIndex);
+            this.BlockMatrix = this.blockType.Rotation(this.rotationIndex);
             this.BlockMatrixSize = BlockMatrix.GetLength(0);
         }
 
@@ -61,24 +61,17 @@
                     }
                 case Engine.Move.RotateRight:
                     {
-                        this.BlockMatrix = this.blockType.GetRotations(this.rotationIndex++);
+                        this.BlockMatrix = this.blockType.Rotation(this.rotationIndex++);
                         break;
                     }
                 case Engine.Move.RotateLeft:
                     {
-                        this.BlockMatrix = this.blockType.GetRotations(this.rotationIndex--);
+                        this.BlockMatrix = this.blockType.Rotation(this.rotationIndex--);
                         break;
                     }
 
                 default: throw new NotImplementedException(move.ToString("G"));
             }
-        }
-
-        internal BlockType GetRandomBlockType()
-        {
-            var blockTypes = Enum.GetValues(typeof(BlockType)).Cast<BlockType>().ToArray();
-
-            return blockTypes[new Random(1).Next(0, blockTypes.Length)];
         }
 
         internal Block Clone()
@@ -97,6 +90,13 @@
             this.Falling = block.Falling;
             this.Position = new Position { Column = block.Position.Column, Row = block.Position.Row };
             this.blockType = block.blockType;
+        }
+
+        internal static BlockType GetRandomBlockType()
+        {
+            var blockTypes = Enum.GetValues(typeof(BlockType)).Cast<BlockType>().ToArray();
+
+            return blockTypes[new Random(1).Next(0, blockTypes.Length)];
         }
     }
 }

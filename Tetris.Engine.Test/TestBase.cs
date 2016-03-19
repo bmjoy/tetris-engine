@@ -12,20 +12,27 @@
     {
         protected void AssertBoard(bool[][] board, bool[][] exspected)
         {
-            this.PrintBoardDifferences(board, exspected);
-
-            Assert.AreEqual(board.GetLength(0), exspected.GetLength(0), "rows");
-            Assert.AreEqual(board[0].Length, exspected[0].Length, "columns");
-
-            for (var row = 0; row < board.GetLength(0); row++)
+            try
             {
-                for (var column = 0; column < board[0].Length; column++)
+                Assert.AreEqual(board.GetLength(0), exspected.GetLength(0), "rows");
+                Assert.AreEqual(board[0].Length, exspected[0].Length, "columns");
+
+                for (var row = 0; row < board.GetLength(0); row++)
                 {
-                    Assert.That(board[row][column], Is.EqualTo(exspected[row][column]));
+                    for (var column = 0; column < board[0].Length; column++)
+                    {
+                        Assert.That(board[row][column], Is.EqualTo(exspected[row][column]));
+                    }
                 }
+            }
+            catch (Exception)
+            {
+                this.PrintBoardDifferences(board, exspected);
+                throw;
             }
         }
 
+        [Obsolete("use string matrixes")]
         protected bool[][] ReverseRows(bool[][] gameBoard)
         {
             var clone = gameBoard.DeepClone();
