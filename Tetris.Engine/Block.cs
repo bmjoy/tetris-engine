@@ -57,12 +57,16 @@
                     }
                 case Engine.Move.RotateRight:
                     {
-                        this.BlockMatrix = this.blockType.Rotation(this.rotationIndex++);
+                        this.BlockMatrix = this.blockType.Rotation(++this.rotationIndex);
                         break;
                     }
                 case Engine.Move.RotateLeft:
                     {
-                        this.BlockMatrix = this.blockType.Rotation(this.rotationIndex--);
+                        this.BlockMatrix = this.blockType.Rotation(--this.rotationIndex);
+                        break;
+                    }
+                case Engine.Move.None:
+                    {
                         break;
                     }
 
@@ -70,7 +74,7 @@
             }
         }
 
-        internal Block Clone()
+        public Block Clone()
         {
             return new Block(this.blockType, new Position { Column = this.Position.Column, Row = this.Position.Row })
                 {

@@ -35,7 +35,7 @@
                 var rows = 0;
                 for (var column = -1; column < manager.NumberOfColumns; column++)
                 {
-                    var tempManager = new BoardManager(manager.GameBoard.DeepClone(), manager.ActiveBlock);
+                    var tempManager = new BoardManager(manager.GameBoard.DeepClone(), manager.ActiveBlock.Clone());
                     var tempBlock = tempManager.ActiveBlock.Clone();
 
                     if (rotation != 0)
@@ -69,8 +69,8 @@
                         moves.Add(
                             new Move
                                 {
-                                    Column = column,
-                                    Rows = rows,
+                                    GameboardWidth = manager.NumberOfColumns,
+                                    ColumnOffSet = column - manager.ActiveBlock.Position.Column,
                                     Fitness = canSpawnBlock ? this.algorithm.CalculateFitness(tempManager.GameBoard) : int.MaxValue,
                                     IsValid = true,
                                     Rotation = rotation

@@ -94,6 +94,11 @@ namespace Tetris.Engine
 
         public bool Move(Move move)
         {
+            if (this.ActiveBlock == null)
+            {
+                return false;
+            }
+
             var tempMove = this.ActiveBlock.Clone();
             tempMove.Move(move);
 
@@ -108,7 +113,7 @@ namespace Tetris.Engine
             {
                 return false;
             }
-            
+
             this.ActiveBlock = tempMove;
 
             return true;

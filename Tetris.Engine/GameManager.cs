@@ -55,20 +55,9 @@ namespace Tetris.Engine
             MoveBlock(Move.Down);
         }
 
-        public void MoveBlock(Move move)
+        public bool MoveBlock(Move move)
         {
-            boardManager.Move(move);
-        }
-
-        public string BoardState()
-        {
-            BoardManager tempBoardManager = boardManager;
-            if (boardManager.ActiveBlock != null)
-            {
-                tempBoardManager = new BoardManager(BoardManager.GameBoard.DeepClone(), BoardManager.ActiveBlock.Clone());
-            }
-
-            return tempBoardManager.GameBoard.MatrixToString(BoardManager.ActiveBlock);
+            return boardManager.Move(move);
         }
     }
 }
