@@ -7,11 +7,7 @@
     {
         public static bool[][] StringToBoolMatrix(this string str, int size)
         {
-            var bools = new Regex("\\D+").Replace(str, string.Empty).Select(x => x == '1').ToArray().Split(size).Reverse().ToArray();
-
-
-
-            return bools;
+            return new Regex("\\D+").Replace(str, string.Empty).Select(x => x == '1').ToArray().Split(size).Reverse().ToArray();
         }
     }
 }

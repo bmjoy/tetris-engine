@@ -35,16 +35,16 @@ namespace Tetris.Engine
         private static readonly string[] L = {
             @"000
               111
-              100", 
+              100",
             @"110
               010
-              010", 
+              010",
             @"001
               111
               000",
             @"010
               010
-              011" }; 
+              011" };
 
         private static readonly string[] J = {
             @"000
@@ -55,10 +55,10 @@ namespace Tetris.Engine
               011",
             @"000
               100
-              111", 
+              111",
             @"011
               010
-              010" }; 
+              010" };
 
         private static readonly string[] O = {
             @"0000

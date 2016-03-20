@@ -239,6 +239,14 @@
                     0000000000000000
                     1111111100111111
                     1111111100111111", BlockType.O, new[] { Move.Right })]
+        [TestCase(@"0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    1111110011111111
+                    1111111011111111
+                    1111111011111111", BlockType.L, new[] { Move.RotateRight })]
         public void MovesAreCorrect(string input, BlockType newBlockType, Move[] expeceted)
         {
             var boolMatrix = input.StringToBoolMatrix(8);
@@ -252,7 +260,7 @@
             var moves = bestMove.Moves;
 
             Assert.IsTrue(bestMove.IsValid);
-            Assert.AreEqual(0, bestMove.Fitness);
+            Assert.AreEqual(0, bestMove.Fitness, "Fitness");
 
             Assert.AreEqual(expeceted.Where(x => x == Move.Right).Count(), moves.Where(x => x == Move.Right).Count());
             Assert.AreEqual(expeceted.Where(x => x == Move.Left).Count(), moves.Where(x => x == Move.Left).Count());

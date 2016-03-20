@@ -1,5 +1,6 @@
 ﻿namespace Tetris.Engine.AI
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -32,15 +33,17 @@
             var moves = new List<Move>();
             for (var rotation = 0; rotation < manager.ActiveBlock.BlockRotations; rotation++)
             {
-                var rows = 0;
                 for (var column = -1; column < manager.NumberOfColumns; column++)
                 {
                     var tempManager = new BoardManager(manager.GameBoard.DeepClone(), manager.ActiveBlock.Clone());
                     var tempBlock = tempManager.ActiveBlock.Clone();
+                    tempBlock.Move(Tetris.Engine.Move.Down);
+                    tempBlock.Move(Tetris.Engine.Move.Down);
+                    tempBlock.Move(Tetris.Engine.Move.Down);
 
                     if (rotation != 0)
                     {
-                        for (var i = 0; i <= rotation; i++)
+                        for (var i = 0; i < rotation; i++)
                         {
                             tempBlock.Move(Tetris.Engine.Move.RotateRight);
                         }
@@ -59,8 +62,6 @@
                             {
                                 break;
                             }
-
-                            rows++;
                         }
 
                         tempManager.Lockblock();
