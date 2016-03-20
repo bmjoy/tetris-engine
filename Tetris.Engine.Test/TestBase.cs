@@ -41,11 +41,11 @@
 
         protected void PrintBoardDifferences(bool[][] gameBoard, bool[][] expectedBoard)
         {
-            Console.WriteLine(this.ReverseRows(gameBoard).MatrixToString());
+            Console.WriteLine(this.ReverseRows(gameBoard).MatrixToString(null));
 
             Console.WriteLine();
 
-            Console.WriteLine(this.ReverseRows(expectedBoard).MatrixToString());
+            Console.WriteLine(this.ReverseRows(expectedBoard).MatrixToString(null));
         }
     }
 }

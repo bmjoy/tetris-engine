@@ -33,11 +33,6 @@ namespace Tetris.Engine.AI
                         }
                     }
 
-                    for (var i = 0; i < this.Rows; i++)
-                    {
-                        a.Add(Tetris.Engine.Move.Down);
-                    }
-
                     this.moves = a.ToArray();
                 }
 

@@ -1,18 +1,17 @@
-﻿namespace Tetris.Engine
+﻿using System;
+
+namespace Tetris.Engine
 {
     using System.Linq;
-
-    using Tetris.Engine.GameStates;
-    using Tetris.Engine.GameStates.Interfaces;
 
     public class BoardManager
     {
         private readonly int rows;
         private readonly int columns;
 
-        public virtual IGameState GameState { get; private set; }
         public virtual Block ActiveBlock { get; private set; }
         public virtual bool[][] GameBoard { get; private set; }
+        public virtual GameStats GameStats { get; }
 
         public virtual int NumberOfColumns
         {
@@ -22,21 +21,17 @@
             }
         }
 
-        public BoardManager(bool[][] gameBoard)
+        public BoardManager(bool[][] gameBoard) : this (gameBoard, null)
         {
-            this.GameBoard = gameBoard;
-            this.GameState = new Paused();
-            this.rows = gameBoard.GetLength(0);
-            this.columns = gameBoard[0].Length;
         }
 
-        public BoardManager(bool[][] gameBoard, IGameState state, Block activeBlock)
+        public BoardManager(bool[][] gameBoard, Block activeBlock)
         {
             this.GameBoard = gameBoard;
-            this.GameState = state;
             this.rows = gameBoard.GetLength(0);
             this.ActiveBlock = activeBlock;
             this.columns = gameBoard[0].Length;
+            this.GameStats = new GameStats();
         }
 
         public bool CanSpawnBlock()
@@ -67,23 +62,27 @@
         {
             if (!this.CanSpawnBlock())
             {
-                this.GameState = new GameOver();
+                throw new InvalidOperationException("can't spawn a new block");
             }
 
             this.ActiveBlock = new Block(type , new Position { Column = (this.columns - type.BlockDimension()) / 2, Row = this.rows - type.BlockDimension() + 1 });
+            GameStats.NewSpawn();
 
             return this.ActiveBlock;
         }
 
         public BoardManager CheckBoard()
         {
+            var clearedRows = 0;
             for (var rowIndex = 0; rowIndex < this.rows; rowIndex++)
             {
                 if (this.IsRowFull(rowIndex))
                 {
+                    clearedRows++;
                     this.CollapseRow(rowIndex--);
                 }
             }
+            GameStats.NewRowClearings(clearedRows);
 
             return this;
         }
@@ -98,11 +97,18 @@
             var tempMove = this.ActiveBlock.Clone();
             tempMove.Move(move);
 
-            if (!this.CheckBlock(tempMove))
+            var validMove = this.CheckBlock(tempMove);
+            if (!validMove && (move == Engine.Move.Down || move == Engine.Move.Fall))
+            {
+                Lockblock();
+                CheckBoard();
+                return true;
+            }
+            else if (!validMove)
             {
                 return false;
             }
-
+            
             this.ActiveBlock = tempMove;
 
             return true;

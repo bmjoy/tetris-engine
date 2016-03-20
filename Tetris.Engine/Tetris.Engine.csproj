@@ -44,6 +44,7 @@
     <Compile Include="BoardManager.cs" />
     <Compile Include="Block.cs" />
     <Compile Include="Extensions\ArrayExtension.cs" />
+    <Compile Include="GameManager.cs" />
     <Compile Include="GameStates\BaseState.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -59,6 +60,7 @@
     <Compile Include="GameStates\Playing.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GameStats.cs" />
     <Compile Include="Move.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

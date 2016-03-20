@@ -1,6 +1,5 @@
 ﻿namespace Tetris.Engine.AI
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -18,19 +17,14 @@
 
         public Move GetNextMove(BoardManager manager)
         {
-            if (manager.GameState.IsGameOver())
-            {
-                // start over
-            }
-
-            if (manager.GameState.IsPaused())
+            if (manager.ActiveBlock == null)
             {
                 return new Move();
             }
 
             var moves = this.GetMoves(manager);
 
-            return moves.FirstOrDefault();
+            return moves.FirstOrDefault() ?? new Move();
         }
 
         public IOrderedEnumerable<Move> GetMoves(BoardManager manager)
@@ -41,7 +35,7 @@
                 var rows = 0;
                 for (var column = -1; column < manager.NumberOfColumns; column++)
                 {
-                    var tempManager = new BoardManager(manager.GameBoard.DeepClone(), manager.GameState, manager.ActiveBlock);
+                    var tempManager = new BoardManager(manager.GameBoard.DeepClone(), manager.ActiveBlock);
                     var tempBlock = tempManager.ActiveBlock.Clone();
 
                     if (rotation != 0)

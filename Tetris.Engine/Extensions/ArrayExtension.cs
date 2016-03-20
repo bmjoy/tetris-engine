@@ -36,14 +36,21 @@
             return list.ToArray();
         }
 
-        public static string MatrixToString(this bool[][] gameBoard)
+        public static string MatrixToString(this bool[][] gameBoard, Block active)
         {
             var fieldChars = new StringBuilder();
-            for (var row = 0; row < gameBoard.GetLength(0); row++)
+            for (int row = gameBoard.GetLength(0) - 1; row >= 0; row--)
             {
                 for (var column = 0; column < gameBoard[row].Length; column++)
                 {
-                    fieldChars.Append(gameBoard[row][column] ? "1" : "0");
+                    if (active != null && row - active.Position.Row >= 0 && row - active.Position.Row < active.BlockMatrixSize && column - active.Position.Column >= 0 && column - active.Position.Column < active.BlockMatrixSize && active.BlockMatrix[row - active.Position.Row][column - active.Position.Column])
+                    {
+                        fieldChars.Append((char) 178);
+                    }
+                    else
+                    {
+                        fieldChars.Append(gameBoard[row][column] ? "1" : "0");
+                    }
                 }
 
                 fieldChars.AppendLine();
