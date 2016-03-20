@@ -99,9 +99,7 @@ namespace Tetris.Engine.Test
             };
 
             var gameManager = new BoardManager(board);
-            gameManager.SpawnBlock();
-
-            Assert.IsTrue(gameManager.GameState.IsGameOver());
+            Assert.Throws<InvalidOperationException>(() => gameManager.SpawnBlock());
         }
 
         [Test]
@@ -121,7 +119,6 @@ namespace Tetris.Engine.Test
 
             gameManager.SpawnBlock();
 
-            Assert.IsFalse(gameManager.GameState.IsGameOver());
             Assert.IsNotNull(gameManager.ActiveBlock);
         }
 
@@ -359,6 +356,81 @@ namespace Tetris.Engine.Test
 
             var gameManager = new BoardManager(board);
             gameManager.SpawnBlock(BlockType.O);
+            gameManager.Lockblock();
+            board = gameManager.CheckBoard().GetBoard();
+
+            this.AssertBoard(board, exspected);
+        }
+
+        [Test]
+        public void Move_down_o_block_is_placed_correctly()
+        {
+            var board =
+                @"0000000000
+                  0000000000
+                  0000000000
+                  0000000000
+                  0000000000".StringToBoolMatrix(5);
+            var exspected =
+                @"0000000000
+                  0000110000
+                  0000110000
+                  0000000000
+                  0000000000".StringToBoolMatrix(5);
+
+            var gameManager = new BoardManager(board);
+            gameManager.SpawnBlock(BlockType.O);
+            gameManager.Move(Move.Down);
+            gameManager.Lockblock();
+            board = gameManager.CheckBoard().GetBoard();
+
+            this.AssertBoard(board, exspected);
+        }
+
+        [Test]
+        public void Move_left_o_block_is_placed_correctly()
+        {
+            var board =
+                @"0000000000
+                  0000000000
+                  0000000000
+                  0000000000
+                  0000000000".StringToBoolMatrix(5);
+            var exspected =
+                @"0001100000
+                  0001100000
+                  0000000000
+                  0000000000
+                  0000000000".StringToBoolMatrix(5);
+
+            var gameManager = new BoardManager(board);
+            gameManager.SpawnBlock(BlockType.O);
+            gameManager.Move(Move.Left);
+            gameManager.Lockblock();
+            board = gameManager.CheckBoard().GetBoard();
+
+            this.AssertBoard(board, exspected);
+        }
+
+        [Test]
+        public void Move_right_o_block_is_placed_correctly()
+        {
+            var board =
+                @"0000000000
+                  0000000000
+                  0000000000
+                  0000000000
+                  0000000000".StringToBoolMatrix(5);
+            var exspected =
+                @"0000011000
+                  0000011000
+                  0000000000
+                  0000000000
+                  0000000000".StringToBoolMatrix(5);
+
+            var gameManager = new BoardManager(board);
+            gameManager.SpawnBlock(BlockType.O);
+            gameManager.Move(Move.Right);
             gameManager.Lockblock();
             board = gameManager.CheckBoard().GetBoard();
 

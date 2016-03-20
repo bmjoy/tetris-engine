@@ -72,7 +72,7 @@
 
         internal Block Clone()
         {
-            return new Block(this.blockType, this.Position)
+            return new Block(this.blockType, new Position { Column = this.Position.Column, Row = this.Position.Row })
                 {
                     BlockMatrix = this.BlockMatrix,
                     Falling = true,
@@ -93,7 +93,7 @@
         {
             var blockTypes = Enum.GetValues(typeof(BlockType)).Cast<BlockType>().ToArray();
 
-            return blockTypes[new Random(1).Next(0, blockTypes.Length)];
+            return blockTypes[new Random().Next(0, blockTypes.Length)];
         }
     }
 }
