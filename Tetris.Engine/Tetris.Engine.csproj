@@ -66,12 +66,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Tetris.ApiClient\Tetris.ApiClient.csproj">
-      <Project>{1e72cd7e-7de0-4c0f-ad7c-31c655b05bba}</Project>
-      <Name>Tetris.ApiClient</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

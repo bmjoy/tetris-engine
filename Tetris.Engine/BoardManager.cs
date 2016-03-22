@@ -94,6 +94,11 @@ namespace Tetris.Engine
 
         public bool Move(Move move)
         {
+            if (move == Engine.Move.None)
+            {
+                return true;
+            }
+
             if (this.ActiveBlock == null)
             {
                 return false;

@@ -23,9 +23,9 @@ namespace Tetris.Engine
             this.GameState = new Playing();
         }
 
-        public BoardManager BoardManager => boardManager;
-        public GameStats GameStats => boardManager.GameStats;
-        public Block ActiveBlock => boardManager.ActiveBlock;
+        public BoardManager BoardManager => this.boardManager;
+        public GameStats GameStats => this.boardManager.GameStats;
+        public Block ActiveBlock => this.boardManager.ActiveBlock;
 
         public void OnGameLoopStep()
         {
@@ -39,7 +39,7 @@ namespace Tetris.Engine
                 return;
             }
 
-            if (boardManager.ActiveBlock == null)
+            if (this.boardManager.ActiveBlock == null)
             {
                 try
                 {
@@ -52,12 +52,12 @@ namespace Tetris.Engine
                 return;
             }
 
-            MoveBlock(Move.Down);
+            this.MoveBlock(Move.Down);
         }
 
         public bool MoveBlock(Move move)
         {
-            return boardManager.Move(move);
+            return this.boardManager.Move(move);
         }
     }
 }
