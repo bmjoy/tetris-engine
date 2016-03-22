@@ -79,7 +79,10 @@
             return new Block(this.blockType, new Position { Column = this.Position.Column, Row = this.Position.Row })
                 {
                     BlockMatrix = this.BlockMatrix,
-                    Falling = true,
+                    Falling = this.Falling,
+                    rotationIndex = this.rotationIndex,
+                    BlockRotations = this.BlockRotations,
+                    BlockMatrixSize = this.BlockMatrixSize,
                 };
         }
 

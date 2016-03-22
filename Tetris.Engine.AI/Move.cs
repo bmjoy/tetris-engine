@@ -25,8 +25,6 @@ namespace Tetris.Engine.AI
                 {
                     var list = new List<Tetris.Engine.Move>();
                     list.Add(Tetris.Engine.Move.None);
-                    list.Add(Tetris.Engine.Move.None);
-                    list.Add(Tetris.Engine.Move.None);
 
                     for (var i = 0; i < this.Rotation; i++)
                     {
