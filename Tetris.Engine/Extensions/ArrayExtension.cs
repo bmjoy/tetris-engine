@@ -41,18 +41,24 @@
             var fieldChars = new StringBuilder();
             for (int row = gameBoard.GetLength(0) - 1; row >= 0; row--)
             {
+                fieldChars.Append("|");
                 for (var column = 0; column < gameBoard[row].Length; column++)
                 {
                     if (active != null && row - active.Position.Row >= 0 && row - active.Position.Row < active.BlockMatrixSize && column - active.Position.Column >= 0 && column - active.Position.Column < active.BlockMatrixSize && active.BlockMatrix[row - active.Position.Row][column - active.Position.Column])
                     {
-                        fieldChars.Append((char) 178);
+                        fieldChars.Append("O");
                     }
                     else
                     {
-                        fieldChars.Append(gameBoard[row][column] ? "1" : "0");
+                        fieldChars.Append(gameBoard[row][column] ? "1" : " ");
                     }
-                }
+                    if (column + 1 < gameBoard[row].Length)
+                    {
+                        fieldChars.Append(" ");
+                    }
 
+                }
+                fieldChars.Append("|");
                 fieldChars.AppendLine();
             }
 

@@ -22,13 +22,13 @@
                 while (!gameManager.GameState.IsGameOver())
                 {
                     PrintState(gameManager);
-                    Thread.Sleep(200);
+                    Thread.Sleep(50);
 
                     gameManager.OnGameLoopStep();
 
                     if (moveIterator != null && moveIterator.MoveNext())
                     {
-                        gameManager.MoveBlock((Move) moveIterator.Current);
+                        gameManager.MoveBlock((Move)moveIterator.Current);
                         continue;
                     }
 
@@ -44,7 +44,7 @@
                 Console.WriteLine("Game Over");
                 Console.WriteLine();
                 Console.WriteLine();
-                Thread.Sleep(500);
+                Thread.Sleep(1500);
             }
         }
 
