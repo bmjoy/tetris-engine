@@ -391,6 +391,135 @@
                     1111111001111111
                     1111111001111111
                     1111111011111111", BlockType.T, new[] { Move.RotateRight, Move.RotateRight, Move.RotateRight })]
+
+        [TestCase(@"0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0111111111111111
+                    0111111111111111
+                    0111111111111111", BlockType.I, new[] { Move.RotateRight, Move.Left, Move.Left, Move.Left, Move.Left, Move.Left, Move.Left, Move.Left, Move.Left })]
+        [TestCase(@"0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    1011111111111111
+                    1011111111111111
+                    1011111111111111", BlockType.I, new[] { Move.RotateRight, Move.Left, Move.Left, Move.Left, Move.Left, Move.Left, Move.Left, Move.Left })]
+        [TestCase(@"0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    1101111111111111
+                    1101111111111111
+                    1101111111111111", BlockType.I, new[] { Move.RotateRight, Move.Left, Move.Left, Move.Left, Move.Left, Move.Left, Move.Left })]
+        [TestCase(@"0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    1110111111111111
+                    1110111111111111
+                    1110111111111111", BlockType.I, new[] { Move.RotateRight, Move.Left, Move.Left, Move.Left, Move.Left, Move.Left })]
+        [TestCase(@"0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    1111011111111111
+                    1111011111111111
+                    1111011111111111", BlockType.I, new[] { Move.RotateRight, Move.Left, Move.Left, Move.Left, Move.Left })]
+        [TestCase(@"0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    1111101111111111
+                    1111101111111111
+                    1111101111111111", BlockType.I, new[] { Move.RotateRight, Move.Left, Move.Left, Move.Left })]
+        [TestCase(@"0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    1111110111111111
+                    1111110111111111
+                    1111110111111111", BlockType.I, new[] { Move.RotateRight, Move.Left, Move.Left })]
+        [TestCase(@"0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    1111111011111111
+                    1111111011111111
+                    1111111011111111", BlockType.I, new[] { Move.RotateRight, Move.Left })]
+        [TestCase(@"0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    1111111111111110
+                    1111111111111110
+                    1111111111111110", BlockType.I, new[] { Move.RotateRight, Move.Right, Move.Right, Move.Right, Move.Right, Move.Right, Move.Right, Move.Right })]
+        [TestCase(@"0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    1111111111111101
+                    1111111111111101
+                    1111111111111101", BlockType.I, new[] { Move.RotateRight, Move.Right, Move.Right, Move.Right, Move.Right, Move.Right, Move.Right })]
+        [TestCase(@"0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    1111111111111011
+                    1111111111111011
+                    1111111111111011", BlockType.I, new[] { Move.RotateRight, Move.Right, Move.Right, Move.Right, Move.Right, Move.Right })]
+        [TestCase(@"0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    1111111111110111
+                    1111111111110111
+                    1111111111110111", BlockType.I, new[] { Move.RotateRight, Move.Right, Move.Right, Move.Right, Move.Right })]
+        [TestCase(@"0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    1111111111101111
+                    1111111111101111
+                    1111111111101111", BlockType.I, new[] { Move.RotateRight, Move.Right, Move.Right, Move.Right })]
+        [TestCase(@"0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    1111111111011111
+                    1111111111011111
+                    1111111111011111", BlockType.I, new[] { Move.RotateRight, Move.Right, Move.Right })]
+        [TestCase(@"0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    1111111110111111
+                    1111111110111111
+                    1111111110111111", BlockType.I, new[] { Move.RotateRight, Move.Right })]
+        [TestCase(@"0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    0000000000000000
+                    1111111101111111
+                    1111111101111111
+                    1111111101111111", BlockType.I, new[] { Move.RotateRight })]
         public void MovesAreCorrect(string input, BlockType newBlockType, Move[] expeceted)
         {
             var boolMatrix = input.StringToBoolMatrix(8);

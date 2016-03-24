@@ -33,7 +33,7 @@
             var moves = new List<Move>();
             for (var rotation = 0; rotation < manager.ActiveBlock.BlockRotations; rotation++)
             {
-                for (var column = -1; column < manager.NumberOfColumns; column++)
+                for (var column = -2; column < manager.NumberOfColumns; column++)
                 {
                     var tempManager = new BoardManager(manager.GameBoard.DeepClone(), manager.ActiveBlock.Clone());
                     var tempBlock = tempManager.ActiveBlock.Clone();
