@@ -8,7 +8,7 @@ Supporting 3rd party AI algorithms by using the AI engine's `IAlgorithm` interfa
 # Usage
 ### Manual play
 
-```
+```C#
 var gameManager = new GameManager(20, 10);
 
 // Game loop
@@ -27,7 +27,7 @@ while (!gameManager.GameState.IsGameOver())
 ### AI Agent
 See example console runner at `./Runners/Tetris.Engine.AIConsoleRunner`
 
-```
+```C#
 var gameManager = new GameManager(20, 10);
 var ai = new AI.Engine(new Tsitsiklis(new TsitsiklisWeights(100, 200)));
 
