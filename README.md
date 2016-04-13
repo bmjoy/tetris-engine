@@ -2,7 +2,7 @@
 C# Tetris Engine written to be pluggable for both manually play and automatic AI play.  
 Supporting 3rd party AI algorithms by using the AI engine's `IAlgorithm` interface.
 
-[![Build Status](https://travis-ci.org/cbpetersen/tetris-ai-engine-dot-net.svg?branch=master)](https://travis-ci.org/cbpetersen/tetris-ai-engine-dot-net)
+[![Build Status](https://travis-ci.org/cbpetersen/tetris-engine.svg?branch=master)](https://travis-ci.org/cbpetersen/tetris-engine)
 
 
 # Usage
