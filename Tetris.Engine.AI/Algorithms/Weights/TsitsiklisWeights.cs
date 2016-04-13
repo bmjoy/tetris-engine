@@ -2,6 +2,10 @@
 {
     public class TsitsiklisWeights
     {
+        public TsitsiklisWeights()
+        {
+        }
+
         public TsitsiklisWeights(int height, int holes)
         {
             this.Height = height;

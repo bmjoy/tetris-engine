@@ -4,6 +4,7 @@
     using System.Collections;
     using System.Threading;
 
+    using Tetris.ApiClient.Entities;
     using Tetris.Engine.AI.Algorithms;
     using Tetris.Engine.AI.Algorithms.Weights;
     using Tetris.Engine.Extensions;
@@ -12,10 +13,17 @@
     {
         static void Main(string[] args)
         {
+            var gameCount = 0;
+            var httpclient = new Tetris.ApiClient.TetrisApiClient(new Uri("http://localhost:3000"));
+            TetrisAlgorithmSetting<TsitsiklisWeights> algorithmSettings = null;
             while (true)
             {
+                if (gameCount % 5 == 0) {
+                    algorithmSettings = httpclient.GetAlgorithmSettings<Tsitsiklis, TsitsiklisWeights>(new TetrisAlgorithmT<TsitsiklisWeights>());
+                }
+
                 var gameManager = new GameManager(20, 10);
-                var ai = new AI.Engine(new Tsitsiklis(new TsitsiklisWeights(100, 200)));
+                var ai = new AI.Engine(new Tsitsiklis(algorithmSettings.Weights));
 
                 IEnumerator moveIterator = null;
                 var blockNumber = -1;
@@ -44,6 +52,18 @@
                 Console.WriteLine("Game Over");
                 Console.WriteLine();
                 Console.WriteLine();
+
+                httpclient.PostStats(new TetrisGameResult<TsitsiklisWeights>(algorithmSettings)
+                {
+                    Blocks = gameManager.GameStats.BlocksSpawned,
+                    OneRowClearings = gameManager.GameStats.OneRowClearings,
+                    DoubleRowClearings = gameManager.GameStats.TwoRowsClearings,
+                    TripleRowClearings = gameManager.GameStats.ThreeRowsClearings,
+                    QuadRowClearings = gameManager.GameStats.FourRowsClearings,
+                    Rows = gameManager.GameStats.TotalRowClearings,
+                    Fitness = gameManager.GameStats.Fitness
+                });
+                gameCount++;
                 Thread.Sleep(1500);
             }
         }

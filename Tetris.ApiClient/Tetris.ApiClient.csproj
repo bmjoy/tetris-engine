@@ -54,8 +54,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\ITetrisAlgorithm.cs" />
+    <Compile Include="Interfaces\ITetrisAlgorithmT.cs" />
+    <Compile Include="Interfaces\ITetrisGameResult.cs" />
+    <Compile Include="Entities\TetrisAlgorithm.cs" />
+    <Compile Include="Entities\TetrisAlgorithmT.cs" />
+    <Compile Include="Entities\TetrisAlgorithmSetting.cs" />
     <Compile Include="TetrisApiClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Entities\TetrisGameResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
