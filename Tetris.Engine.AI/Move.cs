@@ -13,7 +13,7 @@ namespace Tetris.Engine.AI
 
         internal int ColumnOffSet { get; set; }
 
-        public int Fitness { get; set; }
+        public float Fitness { get; set; }
 
         public bool IsValid { get; set; }
 

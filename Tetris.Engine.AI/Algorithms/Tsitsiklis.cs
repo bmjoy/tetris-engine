@@ -4,8 +4,8 @@
 
     public class Tsitsiklis : IAlgorithm
     {
-        private readonly int height;
-        private readonly int holes;
+        private readonly float height;
+        private readonly float holes;
 
         public Tsitsiklis(TsitsiklisWeights tsitsiklisWeights)
         {
@@ -13,9 +13,9 @@
             this.holes = tsitsiklisWeights.Holes;
         }
 
-        public int CalculateFitness(bool[][] gameBoard)
+        public float CalculateFitness(bool[][] gameBoard)
         {
-            var fitness = 0;
+            var fitness = 0f;
             var maxHeight = 0;
             for (var column = 0; column < gameBoard[0].Length; column++)
             {

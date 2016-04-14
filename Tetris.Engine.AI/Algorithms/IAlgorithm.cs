@@ -2,6 +2,6 @@
 {
     public interface IAlgorithm
     {
-        int CalculateFitness(bool[][] gameBoard);
+        float CalculateFitness(bool[][] gameBoard);
     }
 }
