@@ -10,6 +10,7 @@ namespace Tetris.Engine
         private readonly int columns;
 
         public virtual Block ActiveBlock { get; private set; }
+        public Block PreviousBlock { get; private set; }
         public virtual bool[][] GameBoard { get; private set; }
         public virtual GameStats GameStats { get; }
 
@@ -32,6 +33,15 @@ namespace Tetris.Engine
             this.ActiveBlock = activeBlock;
             this.columns = gameBoard[0].Length;
             this.GameStats = new GameStats();
+        }
+
+        internal BoardManager(bool[][] gameBoard, Block activeBlock, GameStats gameStats)
+        {
+            this.GameBoard = gameBoard;
+            this.rows = gameBoard.GetLength(0);
+            this.ActiveBlock = activeBlock;
+            this.columns = gameBoard[0].Length;
+            this.GameStats = gameStats;
         }
 
         public bool CanSpawnBlock()
@@ -175,12 +185,12 @@ namespace Tetris.Engine
 
         internal void Lockblock()
         {
-            var block = this.ActiveBlock;
+            this.PreviousBlock = this.ActiveBlock;
             this.ActiveBlock = null;
 
-            for (var row = block.Position.Row; row < block.Position.Row + block.BlockMatrixSize && row < this.rows; row++)
+            for (var row = this.PreviousBlock.Position.Row; row < this.PreviousBlock.Position.Row + this.PreviousBlock.BlockMatrixSize && row < this.rows; row++)
             {
-                for (var column = block.Position.Column; column < block.Position.Column + block.BlockMatrixSize && column < this.columns; column++)
+                for (var column = this.PreviousBlock.Position.Column; column < this.PreviousBlock.Position.Column + this.PreviousBlock.BlockMatrixSize && column < this.columns; column++)
                 {
                     if (row < 0)
                     {
@@ -207,7 +217,7 @@ namespace Tetris.Engine
                         continue;
                     }
 
-                    this.GameBoard[row][column] = this.GameBoard[row][column] | block.BlockMatrix[row - block.Position.Row][column - block.Position.Column];
+                    this.GameBoard[row][column] = this.GameBoard[row][column] | this.PreviousBlock.BlockMatrix[row - this.PreviousBlock.Position.Row][column - this.PreviousBlock.Position.Column];
                 }
             }
         }

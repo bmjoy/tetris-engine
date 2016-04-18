@@ -1,5 +1,5 @@
 ﻿using System;
-using Tetris.Engine.Extensions;
+
 using Tetris.Engine.GameStates;
 using Tetris.Engine.GameStates.Interfaces;
 
@@ -26,6 +26,7 @@ namespace Tetris.Engine
         public BoardManager BoardManager => this.boardManager;
         public GameStats GameStats => this.boardManager.GameStats;
         public Block ActiveBlock => this.boardManager.ActiveBlock;
+        public Block PreviousBlock => this.boardManager.PreviousBlock;
 
         public void OnGameLoopStep()
         {

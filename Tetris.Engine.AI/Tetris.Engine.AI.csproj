@@ -39,7 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\Features.cs" />
+    <Compile Include="Algorithms\TetrisAi.cs" />
     <Compile Include="Algorithms\Tsitsiklis.cs" />
+    <Compile Include="Algorithms\Weights\TetrisAiWeights.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="Algorithms\IAlgorithm.cs" />
     <Compile Include="Move.cs" />

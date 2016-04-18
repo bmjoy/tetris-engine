@@ -10,13 +10,7 @@
         public int FourRowsClearings { get; private set; }
         public int TotalRowClearings { get; private set; }
         public int BlocksSpawned { get; private set; }
-        public int Fitness
-        {
-            get
-            {
-                return (this.TotalRowClearings * 4) + this.BlocksSpawned;
-            }
-        }
+        public int Fitness => this.TotalRowClearings;
 
         public GameStats()
         {
@@ -51,6 +45,19 @@
             }
 
             this.TotalRowClearings += clearedRows;
+        }
+
+        public GameStats Clone()
+        {
+            return new GameStats
+                       {
+                           OneRowClearings = this.OneRowClearings,
+                           TwoRowsClearings = this.TwoRowsClearings,
+                           ThreeRowsClearings = this.ThreeRowsClearings,
+                           FourRowsClearings = this.FourRowsClearings,
+                           TotalRowClearings = this.TotalRowClearings,
+                           BlocksSpawned = this.BlocksSpawned
+                       };
         }
     }
 }

@@ -13,7 +13,7 @@
             this.holes = tsitsiklisWeights.Holes;
         }
 
-        public float CalculateFitness(bool[][] gameBoard)
+        public float CalculateFitness(bool[][] gameBoard, Block previousBlock, int rowsCleared)
         {
             var fitness = 0f;
             var maxHeight = 0;

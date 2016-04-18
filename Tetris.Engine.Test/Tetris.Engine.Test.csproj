@@ -58,6 +58,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AITests\AlgorithmTests\FeatureTests.cs" />
     <Compile Include="AITests\AlgorithmTests\TsitsiklisTests.cs" />
     <Compile Include="AITests\MoveTests.cs" />
     <Compile Include="AITests\EngineTest.cs" />

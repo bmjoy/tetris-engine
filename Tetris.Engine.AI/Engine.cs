@@ -31,11 +31,13 @@
         public IOrderedEnumerable<Move> GetMoves(BoardManager manager)
         {
             var moves = new List<Move>();
+            var previousBlock = manager.PreviousBlock;
+            var rowClearings = manager.GameStats.TotalRowClearings;
             for (var rotation = 0; rotation < manager.ActiveBlock.BlockRotations; rotation++)
             {
                 for (var column = -2; column < manager.NumberOfColumns; column++)
                 {
-                    var tempManager = new BoardManager(manager.GameBoard.DeepClone(), manager.ActiveBlock.Clone());
+                    var tempManager = new BoardManager(manager.GameBoard.DeepClone(), manager.ActiveBlock.Clone(), manager.GameStats.Clone());
                     var tempBlock = tempManager.ActiveBlock.Clone();
                     tempBlock.Move(Tetris.Engine.Move.Down);
                     tempBlock.Move(Tetris.Engine.Move.Down);
@@ -67,12 +69,12 @@
                         tempManager.Lockblock();
                         tempManager.CheckBoard();
                         var canSpawnBlock = tempManager.CanSpawnBlock();
-                        moves.Add(
-                            new Move
+                        var rowsCleared = tempManager.GameStats.TotalRowClearings - rowClearings;
+                        moves.Add(new Move
                                 {
                                     GameboardWidth = manager.NumberOfColumns,
                                     ColumnOffSet = column - manager.ActiveBlock.Position.Column,
-                                    Fitness = canSpawnBlock ? this.algorithm.CalculateFitness(tempManager.GameBoard) : int.MaxValue,
+                                    Fitness = canSpawnBlock ? this.algorithm.CalculateFitness(tempManager.GameBoard, previousBlock, rowsCleared) : int.MaxValue,
                                     IsValid = true,
                                     Rotation = rotation
                                 });

@@ -49,7 +49,7 @@
             var weights = new TsitsiklisWeights(1, 3);
             var algorithm = new Tsitsiklis(weights);
 
-            Assert.AreEqual(expeceted, algorithm.CalculateFitness(boolMatrix));
+            Assert.AreEqual(expeceted, algorithm.CalculateFitness(boolMatrix , null, 0));
         }
     }
 }
