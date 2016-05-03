@@ -29,7 +29,17 @@ See example console runner at `./Runners/Tetris.Engine.AIConsoleRunner`
 
 ```C#
 var gameManager = new GameManager(20, 10);
-var ai = new AI.Engine(new Tsitsiklis(new TsitsiklisWeights(100, 200)));
+var ai = new Engine(
+    new TetrisAi(
+        new TetrisAiWeights
+            {
+                ColumnTransitions = 0.8024363520000000f,
+                LandingHeight = -0.1958289440000000f,
+                NumberOfHoles = 5.0289489999999999f,
+                RowTransitions = -0.4794300500000000f,
+                RowsCleared = -2.0772042300000000f,
+                WellSums = 0.4410647000000000f
+            }));
 
 IEnumerator moveIterator = null;
 var blockNumber = -1;
