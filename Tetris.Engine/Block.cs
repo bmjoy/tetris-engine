@@ -7,6 +7,7 @@
     {
         private BlockType blockType;
         private int rotationIndex;
+        private static readonly Random Random = new Random();
 
         public Block(Position position) : this(GetRandomBlockType(), position)
         {
@@ -100,7 +101,7 @@
         {
             var blockTypes = Enum.GetValues(typeof(BlockType)).Cast<BlockType>().ToArray();
 
-            return blockTypes[new Random().Next(0, blockTypes.Length)];
+            return blockTypes[Random.Next(0, blockTypes.Length)];
         }
     }
 }
