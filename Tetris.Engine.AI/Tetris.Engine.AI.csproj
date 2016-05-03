@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Tetris.Engine.AI</RootNamespace>
     <AssemblyName>Tetris.Engine.AI</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,7 +35,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -50,10 +50,6 @@
     <Compile Include="Algorithms\Weights\TsitsiklisWeights.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Tetris.ApiClient\Tetris.ApiClient.csproj">
-      <Project>{1e72cd7e-7de0-4c0f-ad7c-31c655b05bba}</Project>
-      <Name>Tetris.ApiClient</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Tetris.Engine\Tetris.Engine.csproj">
       <Project>{d32f5ea5-17a2-400a-82d4-93c5ef1e30b8}</Project>
       <Name>Tetris.Engine</Name>

@@ -76,7 +76,7 @@ namespace Tetris.Engine
             }
 
             this.ActiveBlock = new Block(type , new Position { Column = (this.columns - type.BlockDimension()) / 2, Row = this.rows - type.BlockDimension() + 1 });
-            GameStats.NewSpawn();
+            this.GameStats.NewSpawn();
 
             return this.ActiveBlock;
         }
