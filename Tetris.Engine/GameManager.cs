@@ -44,7 +44,7 @@ namespace Tetris.Engine
             {
                 try
                 {
-                    boardManager.SpawnBlock();
+                    this.boardManager.SpawnBlock();
                 }
                 catch (Exception)
                 {

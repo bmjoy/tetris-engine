@@ -317,7 +317,7 @@ namespace Tetris.Engine.Test
         [Test]
         public void SpawnBlock_i_block_is_placed_correctly()
         {
-            var board = 
+            var board =
                 @"0000000000
                   0000000000
                   0000000000

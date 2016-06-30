@@ -1,6 +1,6 @@
 namespace Tetris.ApiClient.Entities
 {
-    using Tetris.ApiClient.Interfaces;
+    using Interfaces;
 
     public class TetrisAlgorithmSetting<TWeights> : ITetrisAlgorithmT<TWeights>
     {

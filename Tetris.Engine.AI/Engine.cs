@@ -1,11 +1,10 @@
 ﻿namespace Tetris.Engine.AI
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
-    using Tetris.Engine.AI.Algorithms;
-    using Tetris.Engine.Extensions;
+    using Algorithms;
+    using Extensions;
 
     public class Engine
     {

@@ -83,7 +83,7 @@
                     Falling = this.Falling,
                     rotationIndex = this.rotationIndex,
                     BlockRotations = this.BlockRotations,
-                    BlockMatrixSize = this.BlockMatrixSize,
+                    BlockMatrixSize = this.BlockMatrixSize
                 };
         }
 

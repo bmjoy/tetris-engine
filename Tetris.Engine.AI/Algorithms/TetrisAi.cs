@@ -1,6 +1,6 @@
 ﻿namespace Tetris.Engine.AI.Algorithms
 {
-    using Tetris.Engine.AI.Algorithms.Weights;
+    using Weights;
 
     public class TetrisAi : IAlgorithm
     {
