@@ -6,3 +6,5 @@ bin
 .idea
 *.Cache
 /*.iml
+Tetris.Engine.userprefs
+
